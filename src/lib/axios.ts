@@ -10,7 +10,10 @@ const axiosInstance = axios.create({ baseURL: CONFIG.serverUrl });
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong!')
+  (error) => {
+    const err = (error.response && error.response.data) || 'Something went wrong!';
+    return Promise.reject(err instanceof Error ? err : new Error(String(err)));
+  }
 );
 
 export default axiosInstance;
