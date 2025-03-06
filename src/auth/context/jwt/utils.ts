@@ -22,7 +22,7 @@ export function jwtDecode(token: string) {
     return decoded;
   } catch (error) {
     console.error('Error decoding token:', error);
-    throw error;
+    throw error instanceof Error ? error : new Error(String(error));
   }
 }
 
@@ -62,7 +62,7 @@ export function tokenExpired(exp: number) {
       window.location.href = paths.auth.jwt.signIn;
     } catch (error) {
       console.error('Error during token expiration:', error);
-      throw error;
+      throw error instanceof Error ? error : new Error(String(error));
     }
   }, timeLeft);
 }
@@ -89,6 +89,6 @@ export async function setSession(accessToken: string | null) {
     }
   } catch (error) {
     console.error('Error during set session:', error);
-    throw error;
+    throw error instanceof Error ? error : new Error(String(error));
   }
 }

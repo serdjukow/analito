@@ -35,7 +35,7 @@ export function AuthProvider({ children }: Props) {
       if (error) {
         setState({ user: null, loading: false });
         console.error(error);
-        throw error;
+        throw error instanceof Error ? error : new Error(String(error));
       }
 
       if (session) {
