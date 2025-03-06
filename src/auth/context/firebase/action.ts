@@ -47,7 +47,7 @@ export const signInWithPassword = async ({ email, password }: SignInParams): Pro
     }
   } catch (error) {
     console.error('Error during sign in with password:', error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 };
 
@@ -93,7 +93,7 @@ export const signUp = async ({
     });
   } catch (error) {
     console.error('Error during sign up:', error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 };
 

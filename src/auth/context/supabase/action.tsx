@@ -55,7 +55,7 @@ export const signInWithPassword = async ({
 
   if (error) {
     console.error(error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 
   return { data, error };
@@ -81,7 +81,7 @@ export const signUp = async ({
 
   if (error) {
     console.error(error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 
   if (!data?.user?.identities?.length) {
@@ -101,7 +101,7 @@ export const signOut = async (): Promise<{
 
   if (error) {
     console.error(error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 
   return { error };
@@ -119,7 +119,7 @@ export const resetPassword = async ({
 
   if (error) {
     console.error(error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 
   return { data, error };
@@ -133,7 +133,7 @@ export const updatePassword = async ({ password }: UpdatePasswordParams): Promis
 
   if (error) {
     console.error(error);
-    throw error instanceof Error ? error : new Error(String(error));
+    throw error;
   }
 
   return { data, error };
