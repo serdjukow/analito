@@ -10,7 +10,10 @@ const axiosInstance = axios.create({ baseURL: CONFIG.serverUrl });
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong!')
+  (error) => {
+    const err = (error.response && error.response.data) || 'Something went wrong!';
+    return Promise.reject(err instanceof Error ? err : new Error(String(err)));
+  }
 );
 
 export default axiosInstance;
@@ -26,7 +29,7 @@ export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
     return res.data;
   } catch (error) {
     console.error('Failed to fetch:', error);
-    throw error;
+    throw error instanceof Error ? error : new Error(String(error));
   }
 };
 
