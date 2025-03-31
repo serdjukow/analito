@@ -43,6 +43,8 @@ type Props = {
 export function AuthProvider({ children }: Props) {
   const { state, setState } = useSetState<AuthState>({ user: null, loading: true });
 
+  console.log('state:', state);
+
   const checkUserSession = useCallback(async () => {
     try {
       const authSession = (await fetchAuthSession({ forceRefresh: true })).tokens;

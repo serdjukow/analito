@@ -40,10 +40,10 @@ export const CONFIG: ConfigValue = {
   isStaticExport: JSON.parse(`${process.env.BUILD_STATIC_EXPORT}`),
   /**
    * Auth
-   * @method jwt | amplify | firebase | supabase | auth0
+   * @method amplify | jwt| firebase | supabase | auth0
    */
   auth: {
-    method: 'jwt',
+    method: 'amplify',
     skip: false,
     redirectPath: paths.dashboard.root,
   },
@@ -67,9 +67,10 @@ export const CONFIG: ConfigValue = {
    * Amplify
    */
   amplify: {
-    userPoolId: process.env.NEXT_PUBLIC_AWS_AMPLIFY_USER_POOL_ID ?? '',
-    userPoolWebClientId: process.env.NEXT_PUBLIC_AWS_AMPLIFY_USER_POOL_WEB_CLIENT_ID ?? '',
-    region: process.env.NEXT_PUBLIC_AWS_AMPLIFY_REGION ?? '',
+    userPoolId: process.env.NEXT_PUBLIC_AWS_AMPLIFY_USER_POOL_ID ?? 'eu-central-1_XVAPZ3RBo',
+    userPoolWebClientId:
+      process.env.NEXT_PUBLIC_AWS_AMPLIFY_USER_POOL_WEB_CLIENT_ID ?? '2m90t0v3r9stnqqlfsst8vs89s',
+    region: process.env.NEXT_PUBLIC_AWS_AMPLIFY_REGION ?? 'eu-central-1',
   },
   /**
    * Auth0
